@@ -953,8 +953,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
 
 var modals = function modals() {
+  var btnPressed = false;
+
   function bindModal(triggerSelector, modalSelector, closeSelecor) {
-    var closeClickOverlay = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
+    var destroy = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
     var trigger = document.querySelectorAll(triggerSelector);
     var modal = document.querySelector(modalSelector);
     var close = document.querySelector(closeSelecor);
@@ -962,13 +964,13 @@ var modals = function modals() {
     var scroll = calcScroll();
     trigger.forEach(function (item) {
       return item.addEventListener('click', function (e) {
-        if (e.target) {
-          closeWindows(windows);
-          e.preventDefault();
-          modal.style.display = 'block';
-          document.body.style.overflow = 'hidden';
-          document.body.style.marginRight = "".concat(scroll, "px");
-        }
+        if (e.target) e.preventDefault();
+        if (destroy) item.remove();
+        btnPressed = true;
+        closeWindows(windows);
+        modal.style.display = 'block';
+        modal.classList.add('animated', 'fadeIn');
+        bodyStyle('hidden', scroll);
       });
     });
     close.addEventListener('click', function (e) {
@@ -978,19 +980,24 @@ var modals = function modals() {
       document.body.style.marginRight = "".concat(0, "px");
     });
     modal.addEventListener('click', function (e) {
-      if (e.target === modal && closeClickOverlay) {
+      if (e.target === modal) {
         closeWindows(windows);
         modal.style.display = 'none';
-        document.body.style.overflow = '';
-        document.body.style.marginRight = "".concat(0, "px");
+        bodyStyle('');
       }
     });
   }
 
   function closeWindows(windows) {
     windows.forEach(function (item) {
-      return item.style.display = 'none';
+      item.style.display = 'none';
     });
+  }
+
+  function bodyStyle(overflow) {
+    var scrollValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    document.body.style.overflow = overflow;
+    document.body.style.marginRight = "".concat(scrollValue, "px");
   }
 
   function showModalByTime(selector, time) {
@@ -1021,9 +1028,20 @@ var modals = function modals() {
     return scrollWidth;
   }
 
+  function openByScroll(selector) {
+    window.addEventListener('scroll', function () {
+      var scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+
+      if (!btnPressed && window.pageYOffset + document.documentElement.clientHeight >= scrollHeight) {
+        document.querySelector(selector).click();
+      }
+    });
+  }
+
   bindModal('.button-design', '.popup-design', '.popup-design .popup-close');
   bindModal('.button-consultation', '.popup-consultation', '.popup-consultation .popup-close');
-  showModalByTime('.popup-consultation', 60000);
+  bindModal('.fixed-gift', '.popup-gift', '.popup-gift .popup-close', true);
+  openByScroll('.fixed-gift'); // showModalByTime('.popup-consultation', 60000);
 };
 
 /***/ })
