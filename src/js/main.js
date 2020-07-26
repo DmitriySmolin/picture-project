@@ -1,9 +1,10 @@
 // const { modals } = require('./modals/modals');
 
-import {
-    modals
-} from './modals/modals';
+import { modals } from './modules/modals';
+import { sliders } from './modules/sliders';
 
 window.addEventListener('DOMContentLoaded', () => {
-    modals();
+  modals();
+  sliders('.feedback-slider-item', 'horizontal', '.main-prev-btn', '.main-next-btn');
+  sliders('.main-slider-item', 'vertical');
 });
