@@ -1,6 +1,6 @@
 import { postData } from '../services/requests';
 
-export const forms = () => {
+export const forms = (state) => {
   const form = document.querySelectorAll('form');
   // const inputs = document.querySelectorAll('input');
   // const textarea = document.querySelectorAll('textarea');
@@ -66,6 +66,14 @@ export const forms = () => {
       statusMessage.append(textMessage);
 
       const formData = new FormData(item);
+
+      if (state.length !== 0) {
+        for (let key in state) {
+          formData.append(key, state[key]);
+        }
+        formData.append('result', document.querySelector('.calc-price').textContent);
+      }
+
       let api;
       item.closest('.popup-design') || item.classList.contains('calc_form') ? (api = path.designer) : (api = path.question);
       console.log(api);
