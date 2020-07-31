@@ -4352,7 +4352,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_showMoreStyles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/showMoreStyles */ "./src/js/modules/showMoreStyles.js");
 /* harmony import */ var _modules_calc__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/calc */ "./src/js/modules/calc.js");
 /* harmony import */ var _modules_changeModalState__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/changeModalState */ "./src/js/modules/changeModalState.js");
+/* harmony import */ var _modules_filter__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/filter */ "./src/js/modules/filter.js");
 // const { modals } = require('./modals/modals');
+
 
 
 
@@ -4373,6 +4375,7 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_modules_checkTextInputs__WEBPACK_IMPORTED_MODULE_4__["checkTextInputs"])('[name="message"]');
   Object(_modules_showMoreStyles__WEBPACK_IMPORTED_MODULE_5__["showMoreStyles"])('.button-styles', '#styles .row');
   Object(_modules_calc__WEBPACK_IMPORTED_MODULE_6__["calc"])('#size', '#material', '#options', '.promocode', '.calc-price');
+  Object(_modules_filter__WEBPACK_IMPORTED_MODULE_8__["filter"])();
 });
 
 /***/ }),
@@ -4498,6 +4501,83 @@ var checkTextInputs = function checkTextInputs(selector) {
     return input.addEventListener('keypress', function (e) {
       if (e.key.match(/[^а-яё 0-9]/gi)) e.preventDefault();
     });
+  });
+};
+
+/***/ }),
+
+/***/ "./src/js/modules/filter.js":
+/*!**********************************!*\
+  !*** ./src/js/modules/filter.js ***!
+  \**********************************/
+/*! exports provided: filter */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filter", function() { return filter; });
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
+
+var filter = function filter() {
+  var portfolioMenu = document.querySelector('.portfolio-menu');
+  var items = portfolioMenu.querySelectorAll('li');
+  var btnAll = portfolioMenu.querySelector('.all');
+  var btnLovers = portfolioMenu.querySelector('.lovers');
+  var btnChef = portfolioMenu.querySelector('.chef');
+  var btnGirl = portfolioMenu.querySelector('.girl');
+  var btnGuy = portfolioMenu.querySelector('.guy');
+  var btnGrandMother = portfolioMenu.querySelector('.grandmother');
+  var btnGrandDad = portfolioMenu.querySelector('.granddad');
+  var portfolioWrapper = document.querySelector('.portfolio-wrapper');
+  var markAll = portfolioWrapper.querySelectorAll('.all');
+  var markGirl = portfolioWrapper.querySelectorAll('.girl');
+  var markLovers = portfolioWrapper.querySelectorAll('.lovers');
+  var markGuy = portfolioWrapper.querySelectorAll('.guy');
+  var markChef = portfolioWrapper.querySelectorAll('.chef');
+  var no = document.querySelector('.portfolio-no');
+
+  var typeFilter = function typeFilter(markType) {
+    markAll.forEach(function (mark) {
+      mark.style.display = 'none';
+      mark.classList.remove('animated', 'fadeIn');
+    });
+    no.style.display = 'none';
+    no.classList.remove('animated', 'fadeIn');
+
+    if (markType) {
+      markType.forEach(function (mark) {
+        mark.style.display = 'block';
+        mark.classList.add('animated', 'fadeIn');
+      });
+    } else {
+      no.style.display = 'block';
+      no.classList.add('animated', 'fadeIn');
+    }
+  };
+
+  var bindAction = function bindAction(btn, markType) {
+    btn.addEventListener('click', function () {
+      typeFilter(markType);
+    });
+  };
+
+  bindAction(btnAll, markAll);
+  bindAction(btnLovers, markLovers);
+  bindAction(btnChef, markChef);
+  bindAction(btnGirl, markGirl);
+  bindAction(btnGuy, markGuy);
+  bindAction(btnGrandMother);
+  bindAction(btnGrandDad);
+  portfolioMenu.addEventListener('click', function (e) {
+    var target = e.target;
+
+    if (target && target.tagName === 'LI') {
+      items.forEach(function (item) {
+        item.classList.remove('active');
+        target.classList.add('active');
+      });
+    }
   });
 };
 
