@@ -4411,7 +4411,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_changeModalState__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/changeModalState */ "./src/js/modules/changeModalState.js");
 /* harmony import */ var _modules_filter__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/filter */ "./src/js/modules/filter.js");
 /* harmony import */ var _modules_pictureSize__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/pictureSize */ "./src/js/modules/pictureSize.js");
+/* harmony import */ var _modules_accordion__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/accordion */ "./src/js/modules/accordion.js");
 // const { modals } = require('./modals/modals');
+
 
 
 
@@ -4436,7 +4438,59 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_modules_calc__WEBPACK_IMPORTED_MODULE_6__["calc"])('#size', '#material', '#options', '.promocode', '.calc-price');
   Object(_modules_filter__WEBPACK_IMPORTED_MODULE_8__["filter"])();
   Object(_modules_pictureSize__WEBPACK_IMPORTED_MODULE_9__["pictureSize"])('.sizes-block');
+  Object(_modules_accordion__WEBPACK_IMPORTED_MODULE_10__["accordion"])('.accordion-heading', '.accordion-block');
 });
+
+/***/ }),
+
+/***/ "./src/js/modules/accordion.js":
+/*!*************************************!*\
+  !*** ./src/js/modules/accordion.js ***!
+  \*************************************/
+/*! exports provided: accordion */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "accordion", function() { return accordion; });
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
+
+var accordion = function accordion(triggersSelector, itemsSelector) {
+  var btns = document.querySelectorAll(triggersSelector);
+  var blocks = document.querySelectorAll(itemsSelector); // blocks.forEach((block) => block.classList.add('animated', 'fadeInDown'));
+  // btns.forEach((btn) => {
+  //   btn.addEventListener('click', function () {
+  //     blocks.forEach((block) => block.classList.remove('active'));
+  //     if (!this.classList.contains('active', 'active-style')) {
+  //       btns.forEach((btn) => btn.classList.remove('active', 'active-style'));
+  //       this.classList.add('active', 'active-style');
+  //     }
+  //   this.nextElementSibling.classList.add('active');
+  //   });
+  // });
+
+  btns.forEach(function (btn) {
+    return btn.addEventListener('click', function () {
+      this.classList.toggle('active-style');
+      this.nextElementSibling.classList.toggle('active-content');
+
+      if (this.classList.contains('active-style')) {
+        btns.forEach(function (btn) {
+          return btn.classList.remove('active-style');
+        });
+        blocks.forEach(function (block) {
+          return block.classList.remove('active-content');
+        });
+        this.classList.add('active-style');
+        this.nextElementSibling.classList.add('active-content');
+        this.nextElementSibling.style.maxHeight = this.nextElementSibling.scrollHeight + 80 + 'px';
+      } else {
+        this.nextElementSibling.style.maxHeight = '0px';
+      }
+    });
+  });
+};
 
 /***/ }),
 
