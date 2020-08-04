@@ -164,7 +164,7 @@ h4 {
   display: none;
 }
 
-.header-menu > li:hover .header-menu-sub {
+.header-menu>li:hover .header-menu-sub {
   display: block;
 }
 
@@ -265,10 +265,12 @@ h4 {
   height: 4em;
   /* example */
 
-  line-height: 2em /* the same as height */;
+  line-height: 2em
+    /* the same as height */
+  ;
 }
 
-.main .file_upload > button {
+.main .file_upload>button {
   float: right;
   width: 8em;
   /* example */
@@ -276,7 +278,7 @@ h4 {
   height: 100%;
 }
 
-.main .file_upload > div {
+.main .file_upload>div {
   padding-left: 1em;
   /* example */
 }
@@ -298,7 +300,7 @@ h4 {
   cursor: pointer;
 }
 
-.main .file_upload > button {
+.main .file_upload>button {
   transition: background 0.2s;
   border-radius: 50px;
   overflow: hidden;
@@ -311,7 +313,7 @@ h4 {
   padding: 1.5rem;
 }
 
-.main .file_upload > button:before {
+.main .file_upload>button:before {
   content: '';
   background: url('../img/camera.svg') no-repeat center;
   width: 1.6rem;
@@ -659,10 +661,12 @@ h4 {
   height: 4em;
   /* example */
 
-  line-height: 2em /* the same as height */;
+  line-height: 2em
+    /* the same as height */
+  ;
 }
 
-.calc .file_upload > button {
+.calc .file_upload>button {
   float: right;
   width: 8em;
   /* example */
@@ -670,8 +674,10 @@ h4 {
   height: 100%;
 }
 
-.calc .file_upload > div {
-  padding-left: 1em /* example */;
+.calc .file_upload>div {
+  padding-left: 1em
+    /* example */
+  ;
 }
 
 .calc .file_upload input[type='file'] {
@@ -691,7 +697,7 @@ h4 {
   cursor: pointer;
 }
 
-.calc .file_upload > button {
+.calc .file_upload>button {
   transition: background 0.2s;
   border-radius: 50px;
   overflow: hidden;
@@ -704,7 +710,7 @@ h4 {
   padding: 1.5rem;
 }
 
-.calc .file_upload > button:before {
+.calc .file_upload>button:before {
   content: '';
   background: url('../img/camera.svg') no-repeat center;
   width: 1.6rem;
@@ -1397,10 +1403,12 @@ h4 {
   height: 4em;
   /* example */
 
-  line-height: 2em /* the same as height */;
+  line-height: 2em
+    /* the same as height */
+  ;
 }
 
-.popup-design .file_upload > button {
+.popup-design .file_upload>button {
   float: right;
   width: 8em;
   /* example */
@@ -1408,7 +1416,7 @@ h4 {
   height: 100%;
 }
 
-.popup-design .file_upload > div {
+.popup-design .file_upload>div {
   padding-left: 1em;
   /* example */
 }
@@ -1430,7 +1438,7 @@ h4 {
   cursor: pointer;
 }
 
-.popup-design .file_upload > button {
+.popup-design .file_upload>button {
   transition: background 0.2s;
   border-radius: 50px;
   overflow: hidden;
@@ -1443,7 +1451,7 @@ h4 {
   padding: 1.5rem;
 }
 
-.popup-design .file_upload > button:before {
+.popup-design .file_upload>button:before {
   content: '';
   background: url('../img/camera.svg') no-repeat center;
   width: 1.6rem;
@@ -1532,27 +1540,27 @@ h4 {
     display: none;
   }
 
-  .calc .file_upload > div {
+  .calc .file_upload>div {
     display: none;
   }
 
-  .calc .file_upload > button {
+  .calc .file_upload>button {
     width: 100%;
   }
 
-  .popup-design .file_upload > div {
+  .popup-design .file_upload>div {
     display: none;
   }
 
-  .popup-design .file_upload > button {
+  .popup-design .file_upload>button {
     width: 100%;
   }
 
-  .main .file_upload > div {
+  .main .file_upload>div {
     display: none;
   }
 
-  .main .file_upload > button {
+  .main .file_upload>button {
     width: 100%;
   }
 }

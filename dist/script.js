@@ -4412,7 +4412,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_filter__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/filter */ "./src/js/modules/filter.js");
 /* harmony import */ var _modules_pictureSize__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/pictureSize */ "./src/js/modules/pictureSize.js");
 /* harmony import */ var _modules_accordion__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/accordion */ "./src/js/modules/accordion.js");
+/* harmony import */ var _modules_burger__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modules/burger */ "./src/js/modules/burger.js");
 // const { modals } = require('./modals/modals');
+
 
 
 
@@ -4439,6 +4441,7 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_modules_filter__WEBPACK_IMPORTED_MODULE_8__["filter"])();
   Object(_modules_pictureSize__WEBPACK_IMPORTED_MODULE_9__["pictureSize"])('.sizes-block');
   Object(_modules_accordion__WEBPACK_IMPORTED_MODULE_10__["accordion"])('.accordion-heading', '.accordion-block');
+  Object(_modules_burger__WEBPACK_IMPORTED_MODULE_11__["burger"])('.burger-menu', '.burger');
 });
 
 /***/ }),
@@ -4489,6 +4492,36 @@ var accordion = function accordion(triggersSelector, itemsSelector) {
         this.nextElementSibling.style.maxHeight = '0px';
       }
     });
+  });
+};
+
+/***/ }),
+
+/***/ "./src/js/modules/burger.js":
+/*!**********************************!*\
+  !*** ./src/js/modules/burger.js ***!
+  \**********************************/
+/*! exports provided: burger */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "burger", function() { return burger; });
+var burger = function burger(menuSelector, burgerSelector) {
+  var menu = document.querySelector(menuSelector);
+  var burger = document.querySelector(burgerSelector); //   menu.style.display = 'none';
+
+  burger.addEventListener('click', function () {
+    if (menu.style.display === 'none' && window.screen.availWidth <= 992) {
+      menu.style.display = 'block';
+    } else {
+      menu.style.display = 'none';
+    }
+  });
+  window.addEventListener('resize', function () {
+    if (window.screen.availWidth > 992) {
+      menu.style.display = 'none';
+    }
   });
 };
 
