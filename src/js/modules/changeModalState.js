@@ -17,7 +17,6 @@ export const changeModalState = (state) => {
             if (item.getAttribute('class') === 'promocode') state[prop] = item.value;
             break;
         }
-        console.log(state);
       });
     });
   }

@@ -1,19 +1,12 @@
 import { postData } from '../services/requests';
+import { message, statusMessage, statusImg, textMessage } from '../modules/statusMessage';
+import { sendRequestInput } from './sendRequestInput';
 
 export const forms = (state) => {
   const form = document.querySelectorAll('form');
   // const inputs = document.querySelectorAll('input');
   // const textarea = document.querySelectorAll('textarea');
   const upload = document.querySelectorAll('input[name="upload"]');
-
-  const message = {
-    loading: 'Загрузка...',
-    succes: 'Спасибо! Скоро мы с вами свяжемся',
-    failure: 'Что-то пошло не так',
-    spinner: 'assets/img/spinner.gif',
-    ok: 'assets/img/ok.png',
-    fail: 'assets/img/fail.png',
-  };
 
   const path = {
     designer: 'assets/server.php',
@@ -40,6 +33,10 @@ export const forms = (state) => {
       let format = arr[1];
 
       item.previousElementSibling.textContent = name + dots + format;
+
+      if (item.closest('.file_upload.main__file_upload')) {
+        sendRequestInput(item);
+      }
     });
   });
 
@@ -47,23 +44,12 @@ export const forms = (state) => {
     item.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      let statusMessage = document.createElement('div');
-      statusMessage.classList.add('status');
-      item.parentNode.append(statusMessage);
-
       item.classList.add('animated', 'fadeOutUp');
       setTimeout(() => {
         item.style.display = 'none';
       }, 400);
 
-      let statusImg = document.createElement('img');
-      statusImg.setAttribute('src', message.spinner);
-      statusImg.classList.add('animated', 'fadeInUp');
-      statusMessage.append(statusImg);
-
-      let textMessage = document.createElement('div');
-      textMessage.textContent = message.loading;
-      statusMessage.append(textMessage);
+      item.parentNode.append(statusMessage);
 
       const formData = new FormData(item);
 
